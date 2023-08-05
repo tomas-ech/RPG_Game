@@ -18,19 +18,17 @@ public class PlayerState
 
     public virtual void Enter()
     {
-
+        player.anim.SetBool(animBoolName, true);
     }
 
     public virtual void Update()
     {
-
-
+        Debug.Log("Im in " + animBoolName);
     }
 
     public virtual void Exit()
     {
-
-
+        player.anim.SetBool(animBoolName, false);
     }
     
 }
