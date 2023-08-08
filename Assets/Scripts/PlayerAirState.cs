@@ -28,5 +28,15 @@ public class PlayerAirState : PlayerState
         {
             stateMachine.ChangeState(player.idleState);
         }
+
+        if (player.IsWallDetected())
+        {
+            stateMachine.ChangeState(player.wallSlide);
+        }
+
+        if (xInput != 0)
+        {
+            player.SetVelocity(player.moveSpeed * 0.8f * xInput, rb.velocity.y);
+        }
     }
 }
