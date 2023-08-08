@@ -15,7 +15,7 @@ public class PlayerIdleState : PlayerGroundedState
 
         //player.SetVelocity(0, rb.velocity.y);
 
-        rb.velocity = new Vector2(0f, 0f);
+        player.ZeroVelocity();
     }
 
     public override void Exit()
@@ -32,7 +32,7 @@ public class PlayerIdleState : PlayerGroundedState
             return;
         }
 
-        if (xInput != 0)
+        if (xInput != 0 && !player.isBusy)
         {
             stateMachine.ChangeState(player.moveState);
         }        
