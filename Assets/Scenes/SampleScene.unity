@@ -2447,6 +2447,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43471a0d54fa6b942acc6b8dd2fe1850, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundCheck: {fileID: 920791524}
+  groundCheckDistance: 0.15
+  wallCheck: {fileID: 267762771}
+  wallCheckDistance: 0.1
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 8
   attackMovement:
   - 2
   - 1
@@ -2457,13 +2464,6 @@ MonoBehaviour:
   dashTimer: 0
   dashSpeed: 25
   dashDuration: 0.2
-  groundCheck: {fileID: 920791524}
-  groundCheckDistance: 0.15
-  wallCheck: {fileID: 267762771}
-  wallCheckDistance: 0.1
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 8
 --- !u!50 &475889442
 Rigidbody2D:
   serializedVersion: 4
