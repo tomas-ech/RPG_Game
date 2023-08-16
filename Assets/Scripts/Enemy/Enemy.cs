@@ -7,15 +7,24 @@ public class Enemy : Entity
 {
     public EnemyStateMachine stateMachine { get; private set; }
 
-    [SerializeField]
-    protected LayerMask whatIsPlayer;
+    [SerializeField] protected LayerMask whatIsPlayer;
+
+    [Header("Stunned Info")]
+    public float stunDuration;
+    public Vector2 stunDirection;
+    protected bool canBeStunned;
+    [SerializeField] protected GameObject counterImage;
 
     [Header("Move Info")]
     public float moveSpeed;
     public float idleTime;
 
+
     [Header("Attack Info")]
+    public float battleTime;
     public float attackDistance;
+    public float attackCooldown;
+    [HideInInspector] public float lastTimeAttacked;
 
 
     protected override void Awake()
@@ -30,8 +39,32 @@ public class Enemy : Entity
         base.Update();
 
         stateMachine.currentState.Update();
-
     }
+
+    public virtual void OpenCounterAttackWindow()
+    {
+        canBeStunned = true;
+        counterImage.SetActive(true);
+    }
+
+    public virtual void CloseCounterAttackWindow()
+    {
+        canBeStunned = false;
+        counterImage.SetActive(false);
+    }
+
+    protected virtual bool CanBeStunned()
+    {
+        if (canBeStunned)
+        {
+            CloseCounterAttackWindow();
+            return true;
+        }
+
+        return false;
+    }
+
+    public virtual void AnimationFinishTrigger() => stateMachine.currentState.AnimationFinishTrigger();
 
     public virtual RaycastHit2D IsPlayerDetected() => Physics2D.Raycast(wallCheck.position, Vector2.right * facingDir, 50, whatIsPlayer);
 

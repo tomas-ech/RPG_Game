@@ -18,6 +18,8 @@ public class PlayerPrimaryAttackState : PlayerState
     {
         base.Enter();
 
+        xInput = Input.GetAxisRaw("Horizontal"); //Arregla el bug de la dirección de ataque
+
 
         if (comboCounter > 2 || Time.time >= lastTimeAttacked + comboWindow) 
         {

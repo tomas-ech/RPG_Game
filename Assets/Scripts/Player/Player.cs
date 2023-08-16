@@ -10,6 +10,9 @@ public class Player : Entity
 
     [Header("Attack Details")]
     public float[] attackMovement;
+    
+
+
     public bool isBusy { get; private set; }
 
     [Header("Move Info")]
