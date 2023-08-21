@@ -22,8 +22,6 @@ public class Player : Entity
 
 
     [Header("Dash Info")]
-    [SerializeField] float dashCd;
-    [SerializeField] float dashTimer;
     public float dashSpeed;
     public float dashDuration;
     public float dashDir { get; private set; }
@@ -95,14 +93,12 @@ public class Player : Entity
 
     private void CheckForDashInput()
     {
-        dashTimer -= Time.deltaTime;
-
+   
         if (IsWallDetected()) { return; }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && dashTimer < 0) 
+        if (Input.GetKeyDown(KeyCode.LeftShift) && SkillManager.instance.dash.CanUseSkill()) 
         {
-            dashTimer = dashCd;
-
+            
             dashDir = Input.GetAxisRaw("Horizontal");
 
             if (dashDir == 0)
